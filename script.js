@@ -1,110 +1,97 @@
-
 makeSquares();
+colourSquares();
+removeColour();
+
+/**Creates a 16 x 16 grid  by default*/
 var squareDiv;
-//Creates a 16 x 16 grid  by default
 function makeSquares() {
-    for (var i = 0; i < 256; i++) {
+    for (let i = 0; i < 256; i++) {
         squareDiv = document.createElement("div");
         squareDiv.classList.add('squares');
-        squareDiv.setAttribute('style', 'float: left; border: 0.01px solid black; background-color: #DCDCDC; height: 25px; width: 25px')
+        squareDiv.setAttribute('style', 'float: left; border: 0.01px solid black; background-color: white; height: 25px; width: 25px');
         grid.appendChild(squareDiv);
     }
 }
 
-var size = 256;
+var numberOfSquares = 0;
+var sideLength = 0;
+var input = 0;
+
 const newGridButton = document.querySelector('.newGridButton');
 newGridButton.addEventListener('click', changeSquares);
+
+/**Creates a new grid (a x a) based on user input */
 function changeSquares() {
-    input = prompt("How many squares would you like in an (a x a) grid?");
-    sideLength = (410 - 10) / input;
-    numberOfSquares = input ** 2;
-    console.log(numberOfSquares);
-    console.log(sideLength);
-    removeSquares();
-    for (var i = 0; i < numberOfSquares; i++) {
-        squareDiv = document.createElement("div");
-        squareDiv.classList.add('squares');
-        squareDiv.setAttribute('style', `float: left; border: 0.01px solid black; background-color: #DCDCDC; height: ${sideLength}px; width: ${sideLength}px`)
-        grid.appendChild(squareDiv);
+    calculateSquareSize();
+    if (input > 100) {
+        return alert('You must enter an integer less than 100');
     }
-    squares.forEach(function (e) {
-        e.addEventListener('mouseover', function () {
-            e.style.backgroundColor = 'black';
 
-        });
-    });
-
+    if (input <= 0) {
+        return alert('You must enter a positive integer');
+    }
+    else {
+        removeSquares();
+        for (let i = 0; i < numberOfSquares; i++) {
+            squareDiv = document.createElement("div");
+            squareDiv.classList.add('squares');
+            squareDiv.setAttribute('style', `float: left; border: 0.01px solid black; background-color: white; height: ${sideLength}px; width: ${sideLength}px`);
+            grid.appendChild(squareDiv);
+        }
+    }
+    colourSquares();
+    removeColour();
 }
 
-var sideLength = 0;
 //Calculates the side length and width of each square for an (a x a) grid
 function calculateSquareSize() {
     input = prompt("How many squares would you like in an (a x a) grid?");
-    sideLength = (410 - (0.5 * input - 0.5)) / input;
-    numberOfSquares = input * input;
+    sideLength = (410 - 10) / input; //length of grid subtract border width
+    numberOfSquares = input ** 2;
+
+    console.log(`The number of squares are ${numberOfSquares}`);
+    console.log(`The length of each side is ${sideLength}`);
 }
 
-
-const singleSquares = document.querySelector('.squares');
-const squares = document.querySelectorAll('.squares');
 const gridSquares = document.getElementsByClassName('squares');
 //Removes the old squares from the grid
 function removeSquares() {
-    for (var i = gridSquares.length - 1; i >= 0; i--) {
+    for (let i = gridSquares.length - 1; i >= 0; i--) {
         gridSquares[i].remove();
     }
-
 }
-
-
 
 //Add a mouseover event that leaves a trail of black squares
+var colourSelection = 'black';
 
-squares.forEach(function (e) {
-    e.addEventListener('mouseover', function () {
-        e.style.backgroundColor = 'black';
-    });
+const blackButton = document.querySelector('.blackButton');
+blackButton.addEventListener('click', function () {
+    colourSelection = 'black';
 });
 
+const whiteButton = document.querySelector('.whiteButton');
+whiteButton.addEventListener('click', function () {
+    colourSelection = 'white';
+});
 
-
-
-
+/** Colours the grid cells as the user hovers over elements in the squares classlist*/
 function colourSquares() {
-    squareDiv.style.backgroundColor = 'black';
+    const squares = document.querySelectorAll('.squares');
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].addEventListener("mouseover", function () {
+            squares[i].style.backgroundColor = colourSelection;
 
-    // console.log(e);
-
-    // squares.forEach(function (e) {
-    //     e.addEventListener('mouseover', function () {
-    //         e.style.backgroundColor = 'black';
-
-    //     });
-    // });
+        });
+    }
 }
-
-
-
-// squares.forEach(function (e) {
-//     e.addEventListener('mouseover', function () {
-//         e.style.backgroundColor = 'black';
-//         // e.setAttribute('style', 'float: left; border: 1px solid black; background-color: black; height: 24px; width: 24px');
-
-//     });
-// })
-
-
 
 //Add a button to erase grid colours
-const removeButton = document.querySelector('.remove-btn');
-removeButton.addEventListener('click', removeColour);
 function removeColour() {
-    squares.forEach(function (e) {
-        e.style.backgroundColor = '#DCDCDC';
-    });
+    const squares = document.querySelectorAll('.squares');
+    const removeButton = document.querySelector('.remove-btn');
+    for (let i = squares.length - 1; i >= 0; i--) {
+        removeButton.addEventListener('click', function () {
+            squares[i].style.backgroundColor = "white";
+        });
+    }
 }
-
-
-
-
-

@@ -17,12 +17,12 @@ function makeSquares() {
     for (let i = 0; i < 256; i++) {
         squareDiv = document.createElement("div");
         squareDiv.classList.add('squares');
-        squareDiv.setAttribute('style', 'float: left; border: 0.01px solid black; background-color: white; height: 25px; width: 25px');
+        squareDiv.setAttribute('style', 'float: left; border: 0.01px solid black; background-color: #e7e7de; height: 25px; width: 25px');
         grid.appendChild(squareDiv);
     }
 }
 
-const newGridButton = document.querySelector('.newGridButton');
+const newGridButton = document.querySelector('#newGridButton');
 newGridButton.addEventListener('click', changeSquares);
 
 /**Creates a new grid sheet (a x a) based on user input. Users inputs how many squares they want per side.
@@ -42,7 +42,7 @@ function changeSquares() {
         for (let i = 0; i < numberOfSquares; i++) {
             squareDiv = document.createElement("div");
             squareDiv.classList.add('squares');
-            squareDiv.setAttribute('style', `float: left; border: 0.01px solid black; background-color: white; height: ${sideLength}px; width: ${sideLength}px`);
+            squareDiv.setAttribute('style', `float: left; border: 0.01px solid black; background-color: #e7e7de; height: ${sideLength}px; width: ${sideLength}px`);
             grid.appendChild(squareDiv);
         }
     }
@@ -53,7 +53,7 @@ function changeSquares() {
 
 //Calculates the side length and width of each square for an (a x a) grid
 function calculateSquareSize() {
-    input = prompt("How many squares would you like in an (a x a) grid?\n\nNote: colour will default to black");
+    input = prompt("How many squares would you like on each side of the grid? \nMust be less than 100\n\nNote: colour will default to black");
     sideLength = (410 - 10) / input; //length and width of each new sized square
     numberOfSquares = input ** 2; // number of squares that can fit in the grid
 
@@ -71,16 +71,16 @@ function removeSquares() {
 
 var colourButtonClick = 0; //Number 0 refers to black colour
 //Add a mouseover event that leaves a trail of black squares
-const blackButton = document.querySelector('.blackButton');
+const blackButton = document.querySelector('#blackButton');
 blackButton.addEventListener('click', function () {
     colourSelection = 'black';
     colourButtonClick = 0; //variable declaration to allow colour to change from random to black
     console.log(colourSelection);
 });
 
-const whiteButton = document.querySelector('.whiteButton');
+const whiteButton = document.querySelector('#whiteButton');
 whiteButton.addEventListener('click', function () {
-    colourSelection = 'white';
+    colourSelection = '#e7e7de';
     console.log(colourSelection);
     //variable declaration to allow colour to change from random to white. Number 1 refers to white.
     colourButtonClick = 1;
@@ -88,10 +88,11 @@ whiteButton.addEventListener('click', function () {
 
 /**Input event listener for HTML colour picker */
 const colourPicker = document.getElementById("colourPicker");
+colourPicker.value = '#00587a'; //sets default colour to #00587a
 colourPicker.addEventListener('input', chooseColour);
 
 /**Added support for the above input listener by allowing button click events */
-const colourPickerButton = document.querySelector('.colourPickerButton');
+const colourPickerButton = document.querySelector('#colourPickerButton');
 colourPickerButton.addEventListener('click', chooseColour);
 
 function chooseColour() {
@@ -116,7 +117,7 @@ function colourSquares() {
 //Add a button to erase grid colours
 function removeColour() {
     const squares = document.querySelectorAll('.squares');
-    const removeButton = document.querySelector('.remove-btn');
+    const removeButton = document.querySelector('#remove-btn');
     for (let i = squares.length - 1; i >= 0; i--) {
         removeButton.addEventListener('click', function () {
             squares[i].style.backgroundColor = "white";
@@ -125,7 +126,7 @@ function removeColour() {
 }
 
 /** Any hover event will output a random colour on each square. Function randomColours is invoked on click of button 'Random' */
-const randomButton = document.querySelector('.randomButton');
+const randomButton = document.querySelector('#randomButton');
 randomButton.addEventListener('click', randomColours);
 
 function randomColours() {

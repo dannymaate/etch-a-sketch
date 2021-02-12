@@ -7,23 +7,43 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&family=IBM+Plex+Sans:wght@500&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <div class="settings">
-        <button class="remove-btn" type="button">Clear sheet</button>
-        <button class="newGridButton" type="button">New Sheet</button>
-    </div>
-    <div class="colour">
-        <button class="whiteButton" type="button">White</button>
-        <button class="blackButton" type="button">Black</button>
-        <button class="randomButton" type="button">Random</button>
-        <button class="colourPickerButton">Colour Picker<input id="colourPicker" name="Color Picker"
-                type="color" /></button>
-    </div>
+    <h1>Etch-A-Sketch</h1>
+    <p>Hover over the squares to start drawing!</p>
+    <div id="content">
+        <div class="sidebar">
+            <div class="colour">
+                <button id="whiteButton" class="colour-button" type="button">White<img src="images/white.jpg"
+                        alt="A grid square coloured white"></button>
+                <button id="blackButton" class="colour-button" type="button">Black<img src="images/black.jpg"
+                        alt="A grid square coloured black"></button>
+                <button id="randomButton" class="colour-button" type="button">Random<img src="images/random.jpg"
+                        alt="Four squares coloured peach, purple, green and pink"></button>
+                <!-- <button id="newButton" class="colour-button" type="button">Hello</button> -->
+                <button id="colourPickerButton" class="colour-button"><input id="colourPicker" name="Color Picker"
+                        type="color" />Picker</button>
+                <!-- <button id="colourPickerButton" class="colour-button">Colour Picker<input id="colourPicker"
+                        name="Color Picker" type="color" /></button> -->
 
 
-    <div id="grid"></div>
+            </div>
+            <div class="settings">
+                <button id="remove-btn" class="settings-button" type="button">Clear sheet</button>
+                <button id="newGridButton" class="settings-button" type="button">New Sheet</button>
+            </div>
+
+        </div>
+
+
+
+        <div id="grid"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>

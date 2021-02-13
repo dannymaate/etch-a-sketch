@@ -120,7 +120,7 @@ function removeColour() {
     const removeButton = document.querySelector('#remove-btn');
     for (let i = squares.length - 1; i >= 0; i--) {
         removeButton.addEventListener('click', function () {
-            squares[i].style.backgroundColor = "white";
+            squares[i].style.backgroundColor = '#e7e7de';
         });
     }
 }
@@ -137,7 +137,7 @@ function randomColours() {
         squares[i].addEventListener("mouseover", function () {
             //Conditional statement checks if 'Black' or 'White' buttons have been clicked
             if (colourButtonClick == 0) return colourSelection = 'black';
-            if (colourButtonClick == 1) return colourSelection = 'white';
+            if (colourButtonClick == 1) return colourSelection = '#e7e7de';
             if (colourButtonClick == 2) return colourSelection = `${colourPicker.value}`;
 
 
